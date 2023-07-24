@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, memo } from "react"
+import { FC, useState, useEffect, memo } from "react"
 import {
   Comment,
   CommentReply,

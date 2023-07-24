@@ -91,7 +91,7 @@ While working on this project I learnt Redux and grid, and I got better at handl
 
 ### Continued development
 
-I will definitely work on my Redux, I think I could've code better in this project, and I will learn how to handle local storage in React apps.
+I will definitely work on my Redux skills, I think I could've code better in this project, and I will learn how to handle local storage in React apps.
 
 ## Author
 
