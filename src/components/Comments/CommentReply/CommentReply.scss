@@ -1,0 +1,19 @@
+textarea {
+  cursor: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 1px solid hsl(239, 100%, 90%);
+    margin: 4px;
+    background: hsl(224, 27%, 92%);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: hsl(238, 40%, 52%);
+    border-radius: 6px;
+  }
+}

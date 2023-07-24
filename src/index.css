@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Rubik";
+  font-weight: 400;
+  src: local("Rubik Light"), url("/fonts/Rubik-Light.woff2") format("woff2"),
+    url("./fonts/Rubik-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Rubik";
+  font-weight: 500;
+  src: local("Rubik Regular"),
+    url("./fonts/Rubik-Regular.woff2") format("woff2"),
+    url("./fonts/Rubik-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Rubik";
+  font-weight: 700;
+  src: local("Rubik Bold"), url("./fonts/Rubik-Bold.woff2") format("woff2"),
+    url("./fonts/Rubik-Bold.woff") format("woff");
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  background-color: hsl(223, 19%, 93%);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
