@@ -38,7 +38,7 @@ Reply Section
 Comment Delete Modal
 ![Comment Delete Modal](public/screenshots/deleting.png)
 Mobile
-![Mobile](public/screenshots/mobile.png)
+![Mobile](public/screenshots/Mobile.png)
 
 ### Links
 
