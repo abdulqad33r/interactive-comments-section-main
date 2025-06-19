@@ -58,6 +58,7 @@ Mobile
 - [TailwindCSS](https://tailwindcss.com/) - CSS Framework
 - [React](https://reactjs.org/) - JS library
 - [Redux](https://react-redux.js.org/) - JS library
+- Typescript
 
 ### What I learned
 
