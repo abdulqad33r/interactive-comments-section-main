@@ -50,7 +50,7 @@ const Modal: FC = () => {
   }, [isModalOpen])
 
   return (
-    <div className="fixed inset-0 z-50 grid w-screen h-screen origin-center bg-black bg-opacity-50 t-1/2 l-1/2 place-items-center">
+    <div className="fixed inset-0 z-50 grid w-screen h-screen origin-center bg-black/50 t-1/2 l-1/2 place-items-center">
       <div className="max-w-[350px] rounded-lg bg-white p-6 text-dark-blue">
         <p className="mb-3 text-xl font-bold">Delete comment</p>
         <p>
