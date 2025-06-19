@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Data from "../assets/data.json"
 import { Comment, InitialState } from "../components/Container.tsx"
 
-const GetCommentPostedTime = (createdAt: string) => {
+export const GetCommentPostedTime = (createdAt: string) => {
   const now: Date = new Date(),
     postedTime: Date = new Date(createdAt),
     timeDifference: number = now.getTime() - postedTime.getTime(),
@@ -38,12 +38,12 @@ const updatedComments = (COMMENTS: Comment[]) => {
   return COMMENTS.sort((a, b) => b.score - a.score).map((comment) => {
     const updatedReplies: Comment[] =
       comment.replies?.map((reply) => {
-        return { ...reply, createdAt: GetCommentPostedTime(reply.createdAt) }
+        return { ...reply, createdAt: reply.createdAt }
       }) || []
 
     return {
       ...comment,
-      createdAt: GetCommentPostedTime(comment.createdAt),
+      createdAt: comment.createdAt,
       replies: updatedReplies,
     }
   })

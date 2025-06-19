@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --moderate-blue: hsl(238, 40%, 52%);
+
+  --phone: "375px";
+  --bigPhone: "475px";
+  --tablet: "650px";
+}
 
 @font-face {
   font-family: "Rubik";
@@ -25,13 +32,7 @@
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
 }
 
 body {
@@ -54,4 +55,49 @@ body {
 img {
   display: block;
   max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media (width > 650px) {
+  .floating-btn {
+    position: fixed;
+    right: 1%;
+    z-index: 50;
+    display: grid;
+    place-items: center;
+    border-radius: 0.5rem; /* rounded-lg */
+    color: white;
+    background-color: var(--moderate-blue);
+    padding-left: 0.75rem; /* px-3 */
+    padding-right: 0.75rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 500; /* font-medium */
+    text-transform: uppercase;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .floating-btn:hover,
+  .floating-btn:focus-visible {
+    opacity: 0.5;
+  }
+
+  .floating-btn:focus-visible {
+    outline: 1px solid var(--moderate-blue);
+    outline-offset: 2px;
+  }
+
+  .floating-btn.reached-bottom {
+    bottom: -40px;
+  }
+
+  .floating-btn.not-reached-bottom {
+    bottom: 21.7%;
+  }
 }

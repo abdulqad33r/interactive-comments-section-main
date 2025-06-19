@@ -69,7 +69,7 @@ While working on this project I learnt Redux and grid, and I got better at handl
 {
   comment.replies && comment.replies?.length !== 0 && (
     <div className="flex w-full">
-      <div className="bg-light-grayish-blue phone:mx-[3%] phone:mr-[5%] my-4 mr-3 h-auto w-[1px]" />
+      <div className="bg-light-grayish-blue phone:mx-[3%] phone:mr-[5%] my-4 mr-3 h-auto w-px" />
 
       <div className="w-full">
         {comment.replies?.map((reply) => (

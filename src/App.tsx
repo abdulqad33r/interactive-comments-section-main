@@ -1,14 +1,15 @@
-import { useEffect, memo } from "react"
-import { Comments, useAppDispatch } from "./components/Container"
+import { useEffect } from "react"
+import { Comments } from "./components/Container"
 import { GetCurrentUser } from "./redux/CommentsSlice"
+import { useAppDispatch } from "./redux/Store"
 
 function App() {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(GetCurrentUser())
-  }, [])
+  }, [dispatch])
 
   return <Comments />
 }
 
-export default memo(App)
+export default App

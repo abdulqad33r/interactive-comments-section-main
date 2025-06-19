@@ -22,6 +22,4 @@ export type {
   CommentReplyProps,
 }
 
-export { useAppDispatch, useAppSelector } from "../redux/Store.ts"
-
 export { FaChevronDown as ArrowDown } from "react-icons/fa"

@@ -13,15 +13,6 @@ export default {
         "light-grey": "hsl(223, 19%, 93%)",
         "very-light-grey": "hsl(228, 33%, 97%)",
       },
-
-      screens: {
-        phone: "375px",
-        bigPhone: "475px",
-        tablet: "650px",
-        // => @media (min-width: 375px)
-
-        // md: { max: "700px" },
-      },
     },
   },
   plugins: [],

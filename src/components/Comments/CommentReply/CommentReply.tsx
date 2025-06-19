@@ -1,12 +1,8 @@
-import { FC, memo, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import "./CommentReply.scss"
-import {
-  CommentReplyProps,
-  useAppDispatch,
-  useAppSelector,
-} from "../../Container"
+import { CommentReplyProps } from "../../Container"
 import { SetComments } from "../../../redux/CommentsSlice"
-import { useToasts } from "react-toast-notifications"
+import { useAppDispatch, useAppSelector } from "../../../redux/Store"
 
 const CommentReply: FC<CommentReplyProps> = ({
   id,
@@ -15,9 +11,8 @@ const CommentReply: FC<CommentReplyProps> = ({
   isEditing,
   mainReplySection,
   ToggleReplyOpen,
+  ScrollToBottom,
 }) => {
-  const { addToast } = useToasts()
-
   const { currentUser, mainComments } = useAppSelector(
       (store) => store.postComments
     ),
@@ -31,12 +26,6 @@ const CommentReply: FC<CommentReplyProps> = ({
 
   const HandleAddComment = () => {
     replyTextareaRef.current && replyTextareaRef.current.focus()
-
-    setTimeout(() => {
-      document
-        .getElementById("_" + id)
-        ?.scrollIntoView({ behavior: "smooth", block: "center" })
-    }, 200)
 
     const generateID = new Date().getTime()
     if (mainReplySection) {
@@ -57,16 +46,8 @@ const CommentReply: FC<CommentReplyProps> = ({
         }
 
         dispatch(SetComments([...mainComments, newComment]))
-        addToast("Comment Posted", {
-          appearance: "success",
-          autoDismiss: true,
-        })
 
-        setTimeout(() => {
-          document
-            .getElementById("_" + generateID)
-            ?.scrollIntoView({ behavior: "smooth", block: "center" })
-        }, 200)
+        if (ScrollToBottom) ScrollToBottom("instant")
       }
     } else {
       ToggleReplyOpen && id && ToggleReplyOpen(id)
@@ -103,9 +84,10 @@ const CommentReply: FC<CommentReplyProps> = ({
 
         dispatch(SetComments(updatedComments))
 
-        addToast("Comment Posted", {
-          appearance: "success",
-          autoDismiss: true,
+        setTimeout(() => {
+          document
+            .getElementById(`comment-${generateID}`)
+            ?.scrollIntoView({ behavior: "smooth", block: "center" })
         })
       }
     }
@@ -123,9 +105,12 @@ const CommentReply: FC<CommentReplyProps> = ({
   return (
     <div
       id={"_" + id}
-      className={`comment-reply relative grid grid-cols-4 gap-4 rounded-lg bg-white px-6 py-4 transition-all duration-500 bigPhone:flex bigPhone:items-start bigPhone:pr-36 ${
-        openReplySection === id ? "mt-1" : "-mt-[160px] bigPhone:-mt-[112px]"
-      }`}>
+      className={`comment-reply relative grid grid-cols-4 gap-4 rounded-lg bg-white px-6 py-4 transition-all duration-500 [--bigPhone]:flex [--bigPhone]:items-start [--bigPhone]:pr-36 ${
+        openReplySection === id
+          ? "mt-1"
+          : "-mt-[160px] [--bigPhone]:-mt-[112px]"
+      }`}
+    >
       <picture className="col-span-2 row-end-3">
         <source
           srcSet={import.meta.env.BASE_URL + currentUserImages.webp}
@@ -159,11 +144,12 @@ const CommentReply: FC<CommentReplyProps> = ({
               : "background-color 300ms, opacity 500ms"
           }`,
         }}
-        className={`absolute right-[24px] z-[2] col-span-2 flex gap-3 rounded-md px-6 font-medium uppercase hover:opacity-50 focus-visible:opacity-[0.5] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-moderate-blue disabled:opacity-50 ${
+        className={`absolute right-[24px] z-2 col-span-2 flex gap-3 rounded-md px-6 font-medium uppercase hover:opacity-50 focus-visible:opacity-[0.5] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-moderate-blue disabled:opacity-50 ${
           openReplySection === id
-            ? "bottom-4 bg-moderate-blue py-2 text-center text-white bigPhone:bottom-[calc(100%-40px-16px)]"
+            ? "bottom-4 bg-moderate-blue py-2 text-center text-white [--bigPhone]:bottom-[calc(100%-40px-16px)]"
             : "bottom-[16px] flex items-center text-moderate-blue"
-        } ${isEditing ? "pointer-events-none opacity-0" : ""}`}>
+        } ${isEditing ? "pointer-events-none opacity-0" : ""}`}
+      >
         <img
           className={`transition-all duration-500 ${
             openReplySection === id ? "-ml-6" : "ml-0"
@@ -177,4 +163,4 @@ const CommentReply: FC<CommentReplyProps> = ({
   )
 }
 
-export default memo(CommentReply)
+export default CommentReply

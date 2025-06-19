@@ -1,10 +1,10 @@
-import { FC, useEffect, memo } from "react"
-import { useAppDispatch, useAppSelector } from "../Container"
+import { FC, useEffect } from "react"
 import {
   SetDeletCommentId,
   SetIsModalOpen,
   SetComments,
 } from "../../redux/CommentsSlice"
+import { useAppDispatch, useAppSelector } from "../../redux/Store"
 
 const Modal: FC = () => {
   const { mainComments, deleteCommentId, isModalOpen } = useAppSelector(
@@ -50,7 +50,7 @@ const Modal: FC = () => {
   }, [isModalOpen])
 
   return (
-    <div className="t-1/2 l-1/2 fixed inset-0 z-50 grid h-screen w-screen origin-center place-items-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 grid w-screen h-screen origin-center bg-black bg-opacity-50 t-1/2 l-1/2 place-items-center">
       <div className="max-w-[350px] rounded-lg bg-white p-6 text-dark-blue">
         <p className="mb-3 text-xl font-bold">Delete comment</p>
         <p>
@@ -58,18 +58,20 @@ const Modal: FC = () => {
           comment and can't be undone.
         </p>
 
-        <div className="mt-4 flex items-center justify-around gap-2">
+        <div className="flex items-center justify-around gap-2 mt-4">
           <button
             type="button"
             onClick={() => dispatch(SetIsModalOpen(false))}
-            className="cursor-pointer rounded-md bg-dark-blue px-4 py-2 font-medium text-white hover:opacity-50 focus-visible:opacity-50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-dark-blue phone:px-5 phone:py-2">
+            className="px-4 py-2 font-medium text-white rounded-md cursor-pointer bg-dark-blue hover:opacity-50 focus-visible:opacity-50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-dark-blue [--phone]:px-5 [--phone]:py-2"
+          >
             No, CANCEL
           </button>
 
           <button
             type="button"
             onClick={() => HandleDeleteComment(deleteCommentId)}
-            className="cursor-pointer rounded-md bg-soft-red px-4 py-2 font-medium text-white hover:opacity-50 focus-visible:opacity-50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-soft-red phone:px-5 phone:py-2">
+            className="px-4 py-2 font-medium text-white rounded-md cursor-pointer bg-soft-red hover:opacity-50 focus-visible:opacity-50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-soft-red [--phone]:px-5 [--phone]:py-2"
+          >
             Yes, DELETE
           </button>
         </div>
@@ -78,4 +80,4 @@ const Modal: FC = () => {
   )
 }
 
-export default memo(Modal)
+export default Modal
